@@ -20,7 +20,7 @@ import { item } from '../constants/itemTmplate';
 
 
 const propertyData = computed(() => useProceedingsStore().propertyItems)
-console.log(propertyData)
+console.log(propertyData.value )
 // const itemProp = ref(null);
 const addPropertyItem = () => {
   useProceedingsStore().choosenItem = JSON.parse(JSON.stringify(item));
@@ -39,107 +39,26 @@ const data = propertyData.value.reduce((result, item) => {
           useProceedingsStore().choosenItem = item
           router.push('/item')
         },
-        text: item.isp_proi.iduser
+        text: 'Подробнее'
       }),
-      key: item.isp_proi.iduser,
-      col1: h(MyCell, {
-        onClick: () => {
-          useProceedingsStore().choosenItem = item
-          router.push('/item')
-        },
-        text: item.organ_admins.name_organ
-      }),
-      key: item.isp_proi.iduser,
-      judgmentName: h(MyCell, {
-        onClick: () => {
-          useProceedingsStore().choosenItem = item
-          router.push('/item')
-        },
-        text: item.court_case.name_syd
-      }),
-      key: item.isp_proi.iduser,
-      caseId: h(MyCell, {
-        onClick: () => {
-          useProceedingsStore().choosenItem = item
-          router.push('/item')
-        },
-        text: item.court_case.num_del
-      }),
-      key: item.isp_proi.iduser,
-      applicant: h(MyCell, {
-        onClick: () => {
-          useProceedingsStore().choosenItem = item
-          router.push('/item')
-        },
-        text: item.court_case.plaintiff
-      }),
-      key: item.isp_proi.iduser,
-      responder: h(MyCell, {
-        onClick: () => {
-          useProceedingsStore().choosenItem = item
-          router.push('/item')
-        },
-        text: item.court_case.defendant
-      }),
-      key: item.isp_proi.iduser,
-      subject: h(MyCell, {
-        onClick: () => {
-          useProceedingsStore().choosenItem = item
-          router.push('/item')
-        },
-        text: item.court_case.pred_spor
-      }),
-      key: item.isp_proi.iduser,
-      actDate: h(MyCell, {
-        onClick: () => {
-          useProceedingsStore().choosenItem = item
-          router.push('/item')
-        },
-        text: item.court_case.date_vin_syd_akt
-      }),
-      key: item.isp_proi.iduser,
-      debt: h(MyCell, {
-        onClick: () => {
-          useProceedingsStore().choosenItem = item
-          router.push('/item')
-        },
-        text: item.property_pens.principaldebt
-      }),
-      key: item.isp_proi.iduser,
-      penalties: h(MyCell, {
-        onClick: () => {
-          useProceedingsStore().choosenItem = item
-          router.push('/item')
-        },
-        text: item.property_pens.penalties
-      }),
-      costs: h(MyCell, {
-        onClick: () => {
-          useProceedingsStore().choosenItem = item
-          router.push('/item')
-        },
-        text: item.property_pens.сourtcosts
-      }),
-      total: h(MyCell, {
-        onClick: () => {
-          useProceedingsStore().choosenItem = item
-          router.push('/item')
-        },
-        text: parseFloat(item.property_pens.principaldebt) + parseFloat(item.property_pens.penalties) + parseFloat(item.property_pens.сourtcosts)
-      }),
-      execDate: h(MyCell, {
-        onClick: () => {
-          useProceedingsStore().choosenItem = item
-          router.push('/item')
-        },
-        text: item.isp_proi.dateoforderofthewrit
-      })
+      col1: item.organ_admins.name_organ,
+      judgmentName: item.court_case.name_syd,
+      caseId: item.court_case.num_del,
+      applicant: item.court_case.plaintiff,
+      responder: item.court_case.defendant,
+      subject: item.court_case.pred_spor,
+      actDate: item.court_case.date_vin_syd_akt,
+      debt: item.property_pens.principaldebt,
+      penalties: item.property_pens.penalties,
+      costs: item.property_pens.сourtcosts,
+      total: parseFloat(item.property_pens.principaldebt) + parseFloat(item.property_pens.penalties) + parseFloat(item.property_pens.сourtcosts),
+      execDate: item.isp_proi.dateoforderofthewrit,
     }
   ]
 }, [])
 const propertyColumns = reactive([
   {
-    title: 'ID',
+    title: '',
     key: 'id',
     resizable: true,
     minWidth: 100,

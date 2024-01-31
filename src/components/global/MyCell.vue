@@ -1,10 +1,12 @@
 <template>
-  <div class="my-cell">
+  <n-button class="my-cell">
     {{ props.text }}
-  </div>
+  </n-button>
 </template>
 
 <script setup>
+import { NButton } from 'naive-ui';
+
 const props = defineProps({
   text: {
     type: String,
@@ -13,4 +15,9 @@ const props = defineProps({
 })
 </script>
 
-<style></style>
+<style>
+.my-cell {
+  background: #b0b2b5;
+  color: aliceblue;
+}
+</style>

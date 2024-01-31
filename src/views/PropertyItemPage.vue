@@ -29,7 +29,7 @@
       <!-- <p>{{ item[key] }}</p> -->
     </n-space>
   </div>
-  <NButton @click="useProceedingsStore().updateItem()">Создать запись</NButton>
+  <NButton @click="useProceedingsStore().fetchData()">Создать запись</NButton>
 </template>
 
 <script setup>

@@ -39,10 +39,13 @@ import TheHeader from './components/global/TheHeader.vue'
 import { useUserStore } from './stores/useUserStore'
 import { useProceedingsStore } from './stores/useProceedingsStore'
 
+import { useRouter } from 'vue-router'
+
 onMounted(() => {
-  // useProceedingsStore().fetchData();
+  useProceedingsStore().fetchData();
   useUserStore().fetchDepartments();
   useUserStore().fetchUsers();
+  useRouter().push('/auth')
 })
 
 const menuOptions = [

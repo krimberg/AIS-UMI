@@ -3,7 +3,7 @@
     <n-space vertical :size="12">
       <NH3><slot></slot></NH3>
     </n-space>
-    <n-space :size="200">
+    <n-space :size="40">
       <n-input 
         placeholder="Поиск"
         v-model:value="searchedValue"
@@ -16,6 +16,7 @@
         :options="itemsPerPage"
         placeholder="Items per page"
       />
+      <n-checkbox size="large" label="Действующие" v-model:checked="current"/>
     </n-space>
     <n-data-table
       :columns="tableColumns"
@@ -28,7 +29,7 @@
 
 <script setup>
 import { computed, defineComponent, ref, watch } from 'vue'
-import { NDataTable, NSpace, NButton, NH3, NInput, NSelect } from 'naive-ui'
+import { NDataTable, NSpace, NButton, NH3, NInput, NSelect, NCheckbox } from 'naive-ui'
 
 import { useProceedingsStore } from '../../stores/useProceedingsStore'
 
@@ -111,7 +112,10 @@ function handleUpdateFilter(filters, sourceColumn) {
 
 let searchedValue = ref('')
 watch(searchedValue, () => tableData.value = props.searchFunction(searchedValue.value))
-// const searchedItems = computed(() => useProceedingsStore().searchedItems(searchValue))
+
+let current = ref(false);
+watch(current, () => tableData.value = current.value ? tableData.value.slice(3) : props.data) // написать функцию для получиения активных производств
+
 </script>
 
 <style>
