@@ -13,5 +13,7 @@ import AuthForm from '../components/AuthPage/AuthForm.vue'
   display: flex;
   align-items: center;
   justify-content: center;
+  /* background: #EDEDE9; */
+
 }
 </style>

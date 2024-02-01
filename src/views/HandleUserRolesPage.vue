@@ -4,7 +4,7 @@
     <EditUserForm :user-data="editableUser" v-model:show-modal="showEditModal" />
     <div class="handle-user-roles-page__users-list" v-for="user in users" :key="user.id">
 
-        <n-h3 class="handle-user-roles-page__span" @click="editUser(user)" >{{ user.login }}</n-h3>
+        <!-- <n-h3 class="handle-user-roles-page__span" @click="editUser(user)" >{{ user.login }}</n-h3> -->
         <n-h3 class="handle-user-roles-page__initials" >Иван Иванов Иванович</n-h3>
         <n-select
         class="handle-user-roles-page__select"
@@ -69,13 +69,14 @@ function editUser(user){
 
 <style>
 .handle-user-roles-page {
-  /* margin: 10px; */
-  background: #EDEDE9;
+  padding-left: 20px;
+  margin: 20px;
+  /* background: #EFF1F3;  */
 }
 .handle-user-roles-page__users-list{
   /* margin-top: 5px; */
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 .handle-user-roles-page__span {
   margin: 10px;

@@ -166,13 +166,11 @@ const propertyColumns = reactive([
 
 <style>
 .property-table-page {
-  background: #EDEDE9;
 
 }
 
 .property-table-page__add-button {
   width: 300px;
-  background: #EDEDE9;
 }
 
 .property-table-page__table {
@@ -180,17 +178,8 @@ const propertyColumns = reactive([
   justify-content: center;
   align-items: center;
   margin: 0px;
-  background: #EDEDE9;
   width: 100%;
 }
 
-.n-data-table .n-data-table-th {
-    background-color: rgb(142 142 152) !important;
-    color: rgb(255 255 255) !important;
-}
 
-.n-data-table {
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  border-radius: 12px;
-}
 </style>

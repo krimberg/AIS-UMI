@@ -2,9 +2,11 @@
   <div class="app">
     <NConfigProvider :theme-overrides="appThemeOverrides">
       <the-header></the-header>
-      <n-space class="app__space" vertical>
+      
+      <n-space class="app__space" vertical v-if="$route.fullPath != '/auth'">
         <n-layout has-sider>
           <n-layout-sider
+            class="sider"
             bordered
             collapse-mode="width"
             :collapsed-width="64"
@@ -15,6 +17,7 @@
             @expand="collapsed = false"
           >
             <n-menu
+              class="menu"
               :collapsed="collapsed"
               :collapsed-width="64"
               :collapsed-icon-size="22"
@@ -26,12 +29,13 @@
           </n-layout>
         </n-layout>
       </n-space>
+      <RouterView v-else/>
   </NConfigProvider>
   </div>
 </template>
 
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView} from 'vue-router'
 import { h, ref, defineComponent, onMounted } from 'vue'
 import { NIcon, NMenu, NLayout, NLayoutSider, NSwitch, NSpace, NConfigProvider } from 'naive-ui'
 
@@ -39,14 +43,21 @@ import TheHeader from './components/global/TheHeader.vue'
 import { useUserStore } from './stores/useUserStore'
 import { useProceedingsStore } from './stores/useProceedingsStore'
 
+import ListIcon from './components/icons/ListIcon.vue';
+
 import { useRouter } from 'vue-router'
+import GroupIcon from './components/icons/GroupIcon.vue'
 
 onMounted(() => {
   useProceedingsStore().fetchData();
   useUserStore().fetchDepartments();
   useUserStore().fetchUsers();
-  useRouter().push('/auth')
+//   // useRouter().push('/auth')
 })
+
+function renderIcon (icon) {
+  return () => h(NIcon, null, { default: () => h(icon) })
+}
 
 const menuOptions = [
   {
@@ -59,7 +70,8 @@ const menuOptions = [
           }
         },
         { default: () => 'Реестр исполнительных производств имущественного характера' }
-      )
+      ),
+      icon: renderIcon(ListIcon),
   },
   {
     label: () =>
@@ -70,8 +82,9 @@ const menuOptions = [
             name: 'non-property-table'
           }
         },
-        { default: () => 'Реестр исполнительных производств неимущественного характера' }
-      )
+        { default: () => 'Реестр неисполнительных производств неимущественного характера' }
+      ),
+      icon: renderIcon(ListIcon),
   },
   {
     label: () =>
@@ -83,17 +96,19 @@ const menuOptions = [
           }
         },
         { default: () => 'Управление ролями пользователей' }
-      )
+      ),
+      icon: renderIcon(GroupIcon),
   },
+  
 ]
 
 const collapsed = ref(true)
 
 const appThemeOverrides = {
   common: {
-    primaryColor: '#D5BDAF',
-    primaryColorHover: '#D5BDAF',
-    cardColor: '#EDEDE9',
+    primaryColor: '#223843',
+    primaryColorHover: '#223843',
+    cardColor: '#EFF1F3',
     borderRadius: '12px',
 
   }
@@ -104,10 +119,20 @@ const appThemeOverrides = {
 .app {
   width: 100%;
   height: 1800px;
-  background: #EDEDE9;
+  background: #EFF1F3;
 }
 
-/* .app__space {
-  width: 100vh;
-} */
+.sider {
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  margin-right: 20px;
+
+  /* margin-right: 25px; */
+  /* height: 100%; */
+  /* position: fixed; */
+}
+
+.n-layout {
+  background-color: #EFF1F3;
+}
 </style>

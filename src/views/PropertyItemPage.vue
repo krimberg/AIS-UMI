@@ -29,7 +29,7 @@
       <!-- <p>{{ item[key] }}</p> -->
     </n-space>
   </div>
-  <NButton @click="useProceedingsStore().fetchData()">Создать запись</NButton>
+  <NButton @click="useProceedingsStore().updateItem()">Создать запись</NButton>
 </template>
 
 <script setup>
@@ -77,7 +77,6 @@ const choosenJudgement = ref('Арбитажный суд Краснодарск
 <style>
 .property-item-page {
   /* margin: 10px; */
-  background: #EDEDE9;
 }
 .property-item-page__span {
   width: 200px;

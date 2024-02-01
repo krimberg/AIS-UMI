@@ -128,7 +128,7 @@ export const useProceedingsStore = defineStore('Proceedings', {
             if (state.propertyItems[i][key] === value) return state.propertyItems[i]
           }
         }
-        return 'test'
+        return 'govno'
       }
     }
   },

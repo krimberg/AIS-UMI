@@ -1,5 +1,8 @@
 <template>
-  <n-button class="property-table-page__add-button" @click="addNonPropertyItem">Добавить запись</n-button>
+  <n-button class="property-table-page__add-button" @click="addNonPropertyItem">
+    <template #icon><add_icon></add_icon></template>
+    Добавить запись
+  </n-button>
   <div class="non-property-table-page">
     <property-table :data="data" :columns="nonPropertyColumns" :search-function="searchFunction"
       >Реестр исполнительных производств неимущественного характера</property-table
@@ -9,12 +12,13 @@
 
 <script setup>
 import { reactive, h } from 'vue'
-import { NButton } from 'naive-ui'
+import { NButton, NIcon } from 'naive-ui'
 
 import { useProceedingsStore } from '../stores/useProceedingsStore.js'
 import PropertyTable from '../components/TablesPage/PropertyTable.vue'
 import MyCell from '../components/global/MyCell.vue'
 import router from '../router'
+import AddIcon from '../components/icons/AddIcon.Vue'
 
 
 const addNonPropertyItem = () => {
@@ -39,16 +43,40 @@ const addNonPropertyItem = () => {
 
 const nonPropertyData = useProceedingsStore().nonPropertyItems
 const searchFunction = useProceedingsStore().getNonPropertySearched;
-const data = nonPropertyData;
+const data = nonPropertyData.reduce((acc, item) => {
+  return [
+    ...acc,
+    {
+      key: item.id,
+      id: h(MyCell, {
+        onClick: () => {
+          console.log(item);
+          useProceedingsStore().choosenItem = item
+          router.push('/item')
+        },
+        text: 'Подробнее'
+      }),
+      col1: item.col1,
+      judgmentName: item.judgmentName,
+      caseId: item.caseId,
+      applicant: item.applicant,
+      responder: item.responder,
+      subject: item.subject,
+      actDate: item.actDate,
+      execListDate: item.execListDate,
+      receivingListDate: item.receivingListDate,
+      requissites: item.requissites,
+    }
+  ]
+}, []);
 
 const nonPropertyColumns = reactive([
   {
-    title: 'ID',
+    title: '',
     key: 'id',
     resizable: true,
     minWidth: 100,
     maxWidth: 300,
-    sorter: 'default'
   },
   {
     title: 'Ответственный орган администрации',
@@ -131,6 +159,10 @@ const nonPropertyColumns = reactive([
     sorter: 'default'
   }
 ])
+function renderIcon (icon) {
+  return () => h(NIcon, null, { default: () => h(icon) })
+}
+const add_icon = renderIcon(AddIcon);
 </script>
 
 <style>
@@ -138,11 +170,12 @@ const nonPropertyColumns = reactive([
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #EDEDE9;
 }
 .property-table-page__add-button {
-  width: 300px;
-  background: #EDEDE9;
+  width: 200px;
+  color: #EFF1F3;
+  background: #223843;
+  margin-left: 20px;
 }
 
 </style>

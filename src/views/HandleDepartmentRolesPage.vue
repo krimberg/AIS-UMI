@@ -37,7 +37,7 @@
   <style>
   .handle-department-roles-page {
     /* margin: 10px; */
-    background: #EDEDE9;
+    /* background: #EDEDE9; */
   }
   .handle-department-roles-page__span {
     /* margin: 10px; */

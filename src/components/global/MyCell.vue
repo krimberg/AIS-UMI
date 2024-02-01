@@ -17,7 +17,6 @@ const props = defineProps({
 
 <style>
 .my-cell {
-  background: #b0b2b5;
-  color: aliceblue;
+  /* background: #223843; */
 }
 </style>

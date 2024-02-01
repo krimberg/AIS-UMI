@@ -2,7 +2,7 @@
   <div>
     <div class="navbar-top">
       <div class="city">Краснодар</div>
-      <img src="@/assets/pzb-logo.jpg" alt="pzb-logo" class="pzb-logo" />
+      <!-- <img src="@/assets/pzb-logo.jpg" alt="pzb-logo" class="pzb-logo" /> -->
     </div>
   </div>
 </template>
@@ -20,7 +20,7 @@ import { NInput } from 'naive-ui'
   display: flex;
   justify-content: space-between;
   align-items: space-between;
-  background: rgb(37, 30, 22);
+  background: #223843;
 }
 .navbar-categories {
   margin: 1px;
