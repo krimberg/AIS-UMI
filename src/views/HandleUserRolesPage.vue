@@ -1,11 +1,13 @@
 <template>
   <div class="handle-user-roles-page">
-    <CreateUserForm />
     <EditUserForm :user-data="editableUser" v-model:show-modal="showEditModal" />
+    <div class="handle-user-roles-page__create-button">
+      <CreateUserForm />
+    </div>
     <div class="handle-user-roles-page__users-list" v-for="user in users" :key="user.id">
 
         <!-- <n-h3 class="handle-user-roles-page__span" @click="editUser(user)" >{{ user.login }}</n-h3> -->
-        <n-h3 class="handle-user-roles-page__initials" >Иван Иванов Иванович</n-h3>
+        <n-h3 class="handle-user-roles-page__initials" @click="editUser(user)">Иван Иванов Иванович</n-h3>
         <n-select
         class="handle-user-roles-page__select"
         v-model:value="user.access"
@@ -69,15 +71,22 @@ function editUser(user){
 
 <style>
 .handle-user-roles-page {
-  padding-left: 20px;
+  padding: 20px;
   margin: 20px;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   /* background: #EFF1F3;  */
 }
 .handle-user-roles-page__users-list{
   /* margin-top: 5px; */
+  
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
+.handle-user-roles-page__users-list div:nth-child(n+1) {
+  /* background: #000; */
+}
+
 .handle-user-roles-page__span {
   margin: 10px;
   cursor: pointer;
@@ -87,5 +96,10 @@ function editUser(user){
 }
 .handle-user-roles-page__select {
   width: 300px !important;
+}
+
+.handle-user-roles-page__create-button {
+  margin-bottom: 20px;
+
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <n-button class="property-table-page__add-button" @click="addNonPropertyItem">
+  <n-button class="add-button" @click="addNonPropertyItem" style="margin-left: 20px;">
     <template #icon><add_icon></add_icon></template>
     Добавить запись
   </n-button>
@@ -171,11 +171,6 @@ const add_icon = renderIcon(AddIcon);
   justify-content: center;
   align-items: center;
 }
-.property-table-page__add-button {
-  width: 200px;
-  color: #EFF1F3;
-  background: #223843;
-  margin-left: 20px;
-}
+
 
 </style>

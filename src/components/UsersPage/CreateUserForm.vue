@@ -1,6 +1,7 @@
 <template>
   <div class="create-user-form">
-    <n-button @click="showModal = true">
+    <n-button class="add-button" @click="showModal = true">
+      <template #icon><add_icon></add_icon></template>
     Создать пользователя
   </n-button>
   <n-modal v-model:show="showModal">
@@ -14,10 +15,12 @@
     >
       <n-h3>Имя пользователя</n-h3>
       <n-input
+        placeholder="Имя"
         v-model:value="userData.login"
       />
       <n-h3>Пароль пользователя</n-h3>
       <n-input 
+        placeholder="Пароль"
         v-model:value="userData.password"
       />
       <n-h3>Отдел</n-h3>
@@ -39,9 +42,15 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
-import { NModal, NCard, NButton, NInput, NSelect, NH3 } from 'naive-ui';
+import { computed, ref, h } from 'vue';
+import { NModal, NCard, NButton, NInput, NSelect, NH3, NIcon } from 'naive-ui';
 import { useUserStore } from '../../stores/useUserStore';
+import AddIcon from '../icons/AddIcon.vue'
+
+function renderIcon (icon) {
+  return () => h(NIcon, null, { default: () => h(icon) })
+}
+const add_icon = renderIcon(AddIcon);
 
 const userData = ref({
   login: '',

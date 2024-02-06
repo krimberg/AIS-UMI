@@ -29,15 +29,23 @@
       <!-- <p>{{ item[key] }}</p> -->
     </n-space>
   </div>
-  <NButton @click="useProceedingsStore().updateItem()">Создать запись</NButton>
+  <NButton @click="useProceedingsStore().updateItem()" class="add-button">
+    <template #icon><add_icon></add_icon></template>
+  Создать запись</NButton>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { NSpace, NH3, NButton, NInput, NSelect } from 'naive-ui'
+import { ref, h } from 'vue';
+import { NSpace, NH3, NButton, NInput, NSelect, NIcon } from 'naive-ui'
 import { useUserStore } from '../../src/stores/useUserStore'
 
 import { useProceedingsStore } from '../stores/useProceedingsStore'
+import AddIcon from '../components/icons/AddIcon.vue'
+
+function renderIcon (icon) {
+  return () => h(NIcon, null, { default: () => h(icon) })
+}
+const add_icon = renderIcon(AddIcon);
 
 const role = useUserStore().role
 const item = useProceedingsStore().choosenItem

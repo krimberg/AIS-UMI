@@ -3,11 +3,6 @@
     <div class="property-table__header">
       <NH3><slot></slot></NH3>
       <n-space :size="40">
-        <n-input 
-        class="property-table__search"
-        placeholder="Поиск"
-        v-model:value="searchedValue"
-        ></n-input>
         <n-h3>Отображение</n-h3>
         <n-select
         :value="choosenItemsPerPage"
@@ -18,6 +13,11 @@
         />
         <n-h3>Действующие</n-h3>
         <n-checkbox style="margin-top: 6px;" size="large" v-model:checked="current"/>
+        <n-input 
+        class="property-table__search"
+        placeholder="Поиск"
+        v-model:value="searchedValue"
+        ></n-input>
       </n-space>
     </div>
     <n-data-table

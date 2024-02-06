@@ -69,7 +69,7 @@ const menuOptions = [
             name: 'property-table'
           }
         },
-        { default: () => 'Реестр исполнительных производств имущественного характера' }
+        { default: () => 'Имущественные' }
       ),
       icon: renderIcon(ListIcon),
   },
@@ -82,7 +82,7 @@ const menuOptions = [
             name: 'non-property-table'
           }
         },
-        { default: () => 'Реестр неисполнительных производств неимущественного характера' }
+        { default: () => 'Неимущественные' }
       ),
       icon: renderIcon(ListIcon),
   },
@@ -134,5 +134,11 @@ const appThemeOverrides = {
 
 .n-layout {
   background-color: #EFF1F3;
+}
+
+.add-button {
+  width: 200px;
+  color: #EFF1F3;
+  background: #223843;
 }
 </style>

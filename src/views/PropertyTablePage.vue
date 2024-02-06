@@ -1,5 +1,7 @@
 <template>
-  <n-button class="property-table-page__add-button" @click="addPropertyItem">Добавить запись</n-button>
+  <n-button class="add-button" @click="addPropertyItem" style="margin-left: 20px;">
+    <template #icon><add_icon></add_icon></template>
+    Добавить запись</n-button>
   <div class="property-table-page__table">
     
     <property-table :data="data" :columns="propertyColumns" :search-function="searchFunction">
@@ -10,14 +12,19 @@
 
 <script setup>
 import { h, computed, onMounted, reactive, ref } from 'vue'
-import { NButton } from 'naive-ui'
+import { NButton, NIcon } from 'naive-ui'
 
 import { useProceedingsStore } from '../stores/useProceedingsStore.js'
 import PropertyTable from '../components/TablesPage/PropertyTable.vue'
 import router from '../router'
 import MyCell from '../components/global/MyCell.vue'
 import { item } from '../constants/itemTmplate';
+import AddIcon from '../components/icons/AddIcon.Vue'
 
+function renderIcon (icon) {
+  return () => h(NIcon, null, { default: () => h(icon) })
+}
+const add_icon = renderIcon(AddIcon);
 
 const propertyData = computed(() => useProceedingsStore().propertyItems)
 console.log(propertyData.value )
@@ -168,10 +175,10 @@ const propertyColumns = reactive([
 .property-table-page {
 
 }
-
+/* 
 .property-table-page__add-button {
   width: 300px;
-}
+} */
 
 .property-table-page__table {
   display: flex;
