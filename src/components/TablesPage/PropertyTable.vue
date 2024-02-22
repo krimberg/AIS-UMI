@@ -149,4 +149,12 @@ watch(current, () => tableData.value = current.value ? tableData.value.slice(3) 
 .property-table__search {
   width: 400px !important;
 }
+
+.n-data-table-sorter--desc {
+  color: red !important;;
+}
+
+.n-data-table-sorter--asc {
+  color: green !important;
+}
 </style>

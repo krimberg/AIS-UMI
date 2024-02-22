@@ -37,7 +37,7 @@ console.log(propertyData.value)
 const addPropertyItem = () => {
   useProceedingsStore().choosenItem =     
   {
-    propertyItem:
+    item:
     {
         id: Math.ceil(Math.random() * 10000000),
         writOfExecutionOrderDate: '',
@@ -90,7 +90,7 @@ const data = propertyData.value.reduce((acc, item) => {
   return [
     ...acc,
     {
-      key: item.propertyItem.id,
+      key: item.item.id,
       more: h(MyCell, {
         onClick: () => {
           console.log(item);
@@ -99,14 +99,14 @@ const data = propertyData.value.reduce((acc, item) => {
         },
         text: 'Подробнее'
       }),
-      id: item.propertyItem.id,
+      id: item.item.id,
       administration: item.administration.name,
-      division: item.propertyItem.division,
-      proceedingNumber: item.propertyItem.proceedingNumber,
-      recoverer: item.propertyItem.recoverer,
-      deptor: item.propertyItem.deptor,
-      proceedingSubject: item.propertyItem.proceedingSubject,
-      executionPeriod: item.propertyItem.executionPeriod,
+      division: item.item.division,
+      proceedingNumber: item.item.proceedingNumber,
+      recoverer: item.item.recoverer,
+      deptor: item.item.deptor,
+      proceedingSubject: item.item.proceedingSubject,
+      executionPeriod: item.item.executionPeriod,
     }
   ]
 }, []);

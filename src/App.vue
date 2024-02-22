@@ -51,8 +51,8 @@ import LogsIcon from './components/icons/LogsIcon.vue'
 
 onMounted(() => {
   // useProceedingsStore().fetchData();
-  useUserStore().fetchDepartments();
-  useUserStore().fetchUsers();
+  // useUserStore().fetchDepartments();
+  // useUserStore().fetchUsers();
 //   // useRouter().push('/auth')
 })
 
