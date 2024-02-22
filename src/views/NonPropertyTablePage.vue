@@ -30,44 +30,17 @@ import AddIcon from '../components/icons/AddIcon.Vue'
 
 const addNonPropertyItem = () => {
   useProceedingsStore().choosenItem = {
-    item:
-    {
         id: Math.ceil(Math.random() * 10000000),
-        writOfExecutionOrderDate: '',
-        writOfExecutionReceivingDate: '',
-        docOfExecutionRequisites: '',
-        transferDateOfExecutionWrit: '',
-        division: '',
-        executionPeriod: '',
-        recoverer: '',
-        deptor: '',
-        dateOfInitiation: '',
-        proceedingNumber: '',
-        proceedingSubject: '',
-        proceedingEndDate: '',
-        proceedingEndCauses: '',
-        bailifContacts: '',
-        note: '',
-        isProperty: false,
-    },
-    courtCases: [] ,
-    administration:
-    {
-        id: Math.ceil(Math.random() * 10000000),
-        name: 'Ответственный орган администрации МО г. Краснодар 1',
-
-    },
-    status: 
-    {
-        id: Math.ceil(Math.random() * 10000000),
-        proceedingId: '',
-        statusId: '',
-        result: '',
-        cutOffDate: '',
-    },
-};
+        administration: "",
+        division: "",
+        proceedingNumber: "",
+        recoverer: "",
+        deptor: "",
+        proceedingSubject: "",
+        executionPeriod: "",
+  };
   useProceedingsStore().nonPropertyItems.push(useProceedingsStore().choosenItem)
-  router.push('/property-item')
+  router.push('/non-property-item')
 }
 
 
@@ -77,23 +50,23 @@ const data = nonPropertyData.reduce((acc, item) => {
   return [
     ...acc,
     {
-      key: item.item.id,
+      key: item.id,
       more: h(MyCell, {
         onClick: () => {
           console.log(item);
           useProceedingsStore().choosenItem = item
-          router.push('/property-item')
+          router.push('/non-property-item')
         },
         text: 'Подробнее'
       }),
-      id: item.item.id,
-      administration: item.administration.name,
-      division: item.item.division,
-      proceedingNumber: item.item.proceedingNumber,
-      recoverer: item.item.recoverer,
-      deptor: item.item.deptor,
-      proceedingSubject: item.item.proceedingSubject,
-      executionPeriod: item.item.executionPeriod,
+      id: item.id,
+      administration: item.administration,
+      division: item.division,
+      proceedingNumber: item.proceedingNumber,
+      recoverer: item.recoverer,
+      deptor: item.deptor,
+      proceedingSubject: item.proceedingSubject,
+      executionPeriod: item.executionPeriod,
     }
   ]
 }, []);

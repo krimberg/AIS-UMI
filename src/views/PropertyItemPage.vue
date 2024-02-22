@@ -34,30 +34,7 @@
 </div>
 </div>
 
-<div class="property-item-page__court-cases"
-    v-for="(courtCase, id) in item.courtCases" :key="courtCase.id"
-    >
-    <div class="property-item-page__court-card">
-      <n-button class="delete-btn"
-      @click="() => item.courtCases.splice(id, 1)"
-      >
-        <template #icon><delete_icon /></template>
-        Удалить судебное дело
-      </n-button>
-      <n-space horizontal justify="space-between" align="center" class="property-item-page__space"
-      v-for="(value, key) in courtCase" :key="key"
-      >
-      <n-h3 class="property-item-page__span">{{ judgmentFields[key] }}</n-h3>
-      <n-input
-      class="property-item-page__input"
-      :value="courtCase[key]"
-      :disabled="role === 'USER'"
-      @update:value="(newValue) => (courtCase[key] = newValue)"
-      />
-      <!-- <p>{{ item[key] }}</p> -->
-    </n-space>
-  </div>
-</div>
+
 <NButton class="add-button">
     <template #icon><add_icon></add_icon></template>
     Сохранить</NButton>
@@ -93,20 +70,41 @@
         </template>
       </n-card>
     </n-modal>
+    
 
 
 
+
+
+
+<div class="property-item-page__court-cases"
+    v-for="courtCase in item.courtCases" :key="courtCase.id"
+    >
+    <br>
+    <br>
+    <n-space horizontal justify="space-between" align="center" class="property-item-page__space"
+    v-for="(value, key) in courtCase" :key="key"
+    >
+    <n-h3 class="property-item-page__span">{{ judgmentFields[key] }}</n-h3>
+    <n-input
+    class="property-item-page__input"
+    :value="courtCase[key]"
+    :disabled="role === 'USER'"
+    @update:value="(newValue) => (courtCase[key] = newValue)"
+    />
+    <!-- <p>{{ item[key] }}</p> -->
+</n-space>
+</div>
   </template>
   
-  <script setup>
+  <script setup lang="ts">
   import { ref, h, reactive } from 'vue';
   import { NSpace, NH3, NButton, NInput, NSelect, NIcon, NModal, NCard } from 'naive-ui'
   import { useUserStore } from '../../src/stores/useUserStore'
   
   import { useProceedingsStore } from '../stores/useProceedingsStore'
   import AddIcon from '../components/icons/AddIcon.vue'
-import DeleteIcon from '../components/icons/DeleteIcon.vue';
-
+  
   const showModal = ref(false);
   
   const addJudgment = () => {
@@ -117,13 +115,11 @@ import DeleteIcon from '../components/icons/DeleteIcon.vue';
       return () => h(NIcon, null, { default: () => h(icon) })
   }
   const add_icon = renderIcon(AddIcon);
-  const delete_icon = renderIcon(DeleteIcon);
   
   const role = useUserStore().role
   const item = useProceedingsStore().choosenItem
-  console.log(item)
   const mainFields = {
-    item:
+    propertyItem:
     {
         writOfExecutionOrderDate: 'Дата заказа исполнительного листа',
         writOfExecutionReceivingDate: ' Дата получения исполнительного листа',
@@ -141,25 +137,21 @@ import DeleteIcon from '../components/icons/DeleteIcon.vue';
         bailifContacts: 'Контактные данные судебного пристава',
         note: 'Примечание ',
     },
-    administration:
-    {
-        name: 'Ответственный орган администрации МО г. Краснодар',
-
-    },
-};
-if (item.item.isProperty) {
- mainFields.penalties =
+    penalties:
     {
         baseDept: 'Основной долг',
         penalties: 'Пени, штрафы, неустойка',
         judgmentCosts: 'Судебные расходы',
         total: 'Всего',
-    }
-  }
+    },
+    administration:
+    {
+        name: 'Ответственный орган администрации МО г. Краснодар',
 
-
+    },
+}
   const judgmentFields = {
-      // id: "Идентификатор "
+  
       judgmentName: 'Наименование суда',
       caseId: 'Номер дела',
       applicant: 'Истец',
@@ -204,7 +196,7 @@ if (item.item.isProperty) {
 
 
   let tempCourtCase = reactive({
-      // id: Math.ceil(Math.random() * 10000000),
+      id: Math.ceil(Math.random() * 10000000),
       judgmentName: '',
       caseId: '',
       applicant: '',
@@ -216,7 +208,7 @@ if (item.item.isProperty) {
 const addCourtCase = () => {
     item.courtCases.push(JSON.parse(JSON.stringify(tempCourtCase)))
     tempCourtCase = reactive({
-      // id: Math.ceil(Math.random() * 10000000),
+      id: Math.ceil(Math.random() * 10000000),
       judgmentName: '',
       caseId: '',
       applicant: '',
@@ -229,49 +221,22 @@ const addCourtCase = () => {
 }  
   </script>
   
-  <style scoped>
+  <style>
   .property-item-page {
   /* margin: 10px; */
-  margin-bottom: 20px;
   }
   .property-item-page__space {
       height: 45px;
   }
   .property-item-page__span {
-  width: 600px;
+  width: 500px;
   margin: 10px;
   }
   .property-item-page__input {
-  width: 400px !important;
+  width: 800px !important;
   }
   .property-item-page__select {
-  width: 400px !important;
-  }
-  .property-item-page__court-card {
-    background: white;
-    padding: 5px;
-    /* margin-top: 30px; */
-    margin-bottom: 30px;
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-    border-radius: 12px;
-
-  }
-
-  .delete-btn {
-    background: rgb(211, 62, 62);
-    color: white;
-    margin-top: 10px;
-    margin-left: 10px;
-    box-shadow: rgb(255, 255, 255) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-    border-radius: 12px;
-  }
-
-
-  .n-input{
-  width: 600px !important;
-  }
-  .n-select{
-  width: 600px !important;
+  width: 800px !important;
   }
   </style>
   

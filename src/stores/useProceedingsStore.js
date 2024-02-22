@@ -7,7 +7,7 @@ export const useProceedingsStore = defineStore('Proceedings', {
   state: () => ({
     propertyItems: [
       {
-        item:
+        propertyItem:
         {
             id: '1543546551',
             writOfExecutionOrderDate: '',
@@ -29,10 +29,10 @@ export const useProceedingsStore = defineStore('Proceedings', {
         },
         penalties:
         {
-            baseDept: '777',
-            penalties: '77',
-            judgmentCosts: '77',
-            total: '7777',
+            baseDept: '',
+            penalties: '',
+            judgmentCosts: '',
+            total: '',
         },
         courtCases: [],
         administration:
@@ -51,7 +51,7 @@ export const useProceedingsStore = defineStore('Proceedings', {
         },
     },
     {
-      item:
+      propertyItem:
       {
           id: '1543546552',
           writOfExecutionOrderDate: '',
@@ -96,81 +96,58 @@ export const useProceedingsStore = defineStore('Proceedings', {
   }
     ],
     nonPropertyItems: [
-      {
-        item:
-        {
-            id: '1543546551',
-            writOfExecutionOrderDate: '',
-            writOfExecutionReceivingDate: '',
-            docOfExecutionRequisites: '',
-            transferDateOfExecutionWrit: '',
-            division: 'Структурное подразделение 1',
-            executionPeriod: '11.11.2024',
-            recoverer: 'Иванов Иван Иванович',
-            deptor: 'Смирнов Игорь Петрович',
-            dateOfInitiation: '',
-            proceedingNumber: 'Исполнительное производство 1',
-            proceedingSubject: 'Предмет исполнительного производства 1',
-            proceedingEndDate: '',
-            proceedingEndCauses: '',
-            bailifContacts: '',
-            note: '',
-            isProperty: false,
-        },
-        courtCases: [],
-        administration:
-        {
-            id: '',
-            name: 'Ответственный орган администрации МО г. Краснодар 1',
-    
-        },
-        status: 
-        {
-            id: '',
-            proceedingId: '',
-            statusId: '',
-            result: '',
-            cutOffDate: '',
-        },
-    },
-    {
-      item:
-      {
-          id: '1543546552',
-          writOfExecutionOrderDate: '',
-          writOfExecutionReceivingDate: '',
-          docOfExecutionRequisites: '',
-          transferDateOfExecutionWrit: '',
-          division: 'Структурное подразделение 2',
-          executionPeriod: '11.11.2024',
-          recoverer: 'Сидоров Олег Дмитриевич',
-          deptor: 'Семенов Семен Семенович',
-          dateOfInitiation: '',
-          proceedingNumber: 'Исполнительное производство 2',
-          proceedingSubject: 'Предмет исполнительного производства 2',
-          proceedingEndDate: '',
-          proceedingEndCauses: '',
-          bailifContacts: '',
-          note: '',
-          isProperty: false,
+      { 
+          id: "35435465541",
+          administration: "Ответственный орган администрации МО г. Краснодар 1",
+          division: "Структурное подразделение 1",
+          proceedingNumber: "Исполнительное производство 1",
+          recoverer: "Иванов Иван Иванович",
+          deptor: "Смирнов Игорь Петрович",
+          proceedingSubject: "Предмет исполнительного производства 1",
+          executionPeriod: "11.11.2024",
       },
-      courtCases: [],
-      administration:
-      {
-          id: '',
-          name: 'Ответственный орган администрации МО г. Краснодар 2',
-  
+      { 
+          id: "35435465542",
+          administration: "Ответственный орган администрации МО г. Краснодар 2",
+          division: "Структурное подразделение 2",
+          proceedingNumber: "Исполнительное производство 2",
+          recoverer: "Иванов Иван Иванович",
+          deptor: "Смирнов Игорь Петрович",
+          proceedingSubject: "Предмет исполнительного производства 2",
+          executionPeriod: "12.12.2024",
+      },  
+      { 
+          id: "3543546553",
+          administration: "Ответственный орган администрации МО г. Краснодар 3",
+          division: "Структурное подразделение 3",
+          proceedingNumber: "Исполнительное производство 3",
+          recoverer: "Иванов Иван Иванович",
+          deptor: "Смирнов Игорь Петрович",
+          proceedingSubject: "Предмет исполнительного производства 3",
+          executionPeriod: "11.05.2024",
       },
-      status: 
-      {
-          id: '',
-          proceedingId: '',
-          statusId: '',
-          result: '',
-          cutOffDate: '',
+      { 
+          id: "3543546554",
+          administration: "Ответственный орган администрации МО г. Краснодар 4",
+          division: "Структурное подразделение 4",
+          proceedingNumber: "Исполнительное производство 4",
+          recoverer: "Иванов Иван Иванович",
+          deptor: "Смирнов Игорь Петрович",
+          proceedingSubject: "Предмет исполнительного производства 4",
+          executionPeriod: "14.03.2024",
       },
-  }
-    ],
+      { 
+          id: "3543546555",
+          administration: "Ответственный орган администрации МО г. Краснодар 5",
+          division: "Структурное подразделение 5",
+          proceedingNumber: "Исполнительное производство 5",
+          recoverer: "Иванов Иван Иванович",
+          deptor: "Смирнов Игорь Петрович",
+          proceedingSubject: "Предмет исполнительного производства 5",
+          executionPeriod: "15.11.2024",
+      },
+      
+  ],
     choosenItem: reactive(null)
   }),
   getters: {
