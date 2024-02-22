@@ -1,11 +1,18 @@
 <template>
-  <n-button class="add-button" @click="addNonPropertyItem" style="margin-left: 20px;">
-    <template #icon><add_icon></add_icon></template>
-    Добавить запись
-  </n-button>
+  
   <div class="non-property-table-page">
     <property-table :data="data" :columns="nonPropertyColumns" :search-function="searchFunction"
-      >Реестр исполнительных производств неимущественного характера</property-table
+      >
+      <template #header>
+        Реестр исполнительных производств неимущественного характера
+      </template>
+      <template #button>
+        <n-button class="add-button" @click="addNonPropertyItem">
+          <template #icon><add_icon></add_icon></template>
+          Добавить запись
+        </n-button>
+      </template>
+      </property-table
     >
   </div>
 </template>
@@ -23,21 +30,44 @@ import AddIcon from '../components/icons/AddIcon.Vue'
 
 const addNonPropertyItem = () => {
   useProceedingsStore().choosenItem = {
-        key: Math.ceil(Math.random() * 10000000),
+    item:
+    {
         id: Math.ceil(Math.random() * 10000000),
-        col1: '',
-        judgmentName: '',
-        caseId: '',
-        applicant: '',
-        responder: '',
-        subject: '',
-        actDate: '',
-        execListDate: '',
-        receivingListDate: '',
-        requissites: ''
-  };
+        writOfExecutionOrderDate: '',
+        writOfExecutionReceivingDate: '',
+        docOfExecutionRequisites: '',
+        transferDateOfExecutionWrit: '',
+        division: '',
+        executionPeriod: '',
+        recoverer: '',
+        deptor: '',
+        dateOfInitiation: '',
+        proceedingNumber: '',
+        proceedingSubject: '',
+        proceedingEndDate: '',
+        proceedingEndCauses: '',
+        bailifContacts: '',
+        note: '',
+        isProperty: false,
+    },
+    courtCases: [] ,
+    administration:
+    {
+        id: Math.ceil(Math.random() * 10000000),
+        name: 'Ответственный орган администрации МО г. Краснодар 1',
+
+    },
+    status: 
+    {
+        id: Math.ceil(Math.random() * 10000000),
+        proceedingId: '',
+        statusId: '',
+        result: '',
+        cutOffDate: '',
+    },
+};
   useProceedingsStore().nonPropertyItems.push(useProceedingsStore().choosenItem)
-  router.push('/item')
+  router.push('/property-item')
 }
 
 
@@ -47,25 +77,23 @@ const data = nonPropertyData.reduce((acc, item) => {
   return [
     ...acc,
     {
-      key: item.id,
-      id: h(MyCell, {
+      key: item.item.id,
+      more: h(MyCell, {
         onClick: () => {
           console.log(item);
           useProceedingsStore().choosenItem = item
-          router.push('/item')
+          router.push('/property-item')
         },
         text: 'Подробнее'
       }),
-      col1: item.col1,
-      judgmentName: item.judgmentName,
-      caseId: item.caseId,
-      applicant: item.applicant,
-      responder: item.responder,
-      subject: item.subject,
-      actDate: item.actDate,
-      execListDate: item.execListDate,
-      receivingListDate: item.receivingListDate,
-      requissites: item.requissites,
+      id: item.item.id,
+      administration: item.administration.name,
+      division: item.item.division,
+      proceedingNumber: item.item.proceedingNumber,
+      recoverer: item.item.recoverer,
+      deptor: item.item.deptor,
+      proceedingSubject: item.item.proceedingSubject,
+      executionPeriod: item.item.executionPeriod,
     }
   ]
 }, []);
@@ -73,91 +101,75 @@ const data = nonPropertyData.reduce((acc, item) => {
 const nonPropertyColumns = reactive([
   {
     title: '',
+    key: 'more',
+    resizable: true,
+    minWidth: 100,
+    maxWidth: 300,
+  },
+  {
+    title: 'id',
     key: 'id',
     resizable: true,
     minWidth: 100,
     maxWidth: 300,
+    sorter: 'default',
   },
   {
-    title: 'Ответственный орган администрации',
-    key: 'col1',
+    title: "Ответственный орган администрации МО г. Краснодар",
+    key: 'administration',
     resizable: true,
     minWidth: 100,
     maxWidth: 300,
     sorter: 'default'
   },
   {
-    title: 'Наименование суда',
-    key: 'judgmentName',
+    title: "Наименование структурного подразделения УФССП",
+    key: 'division',
     resizable: true,
     minWidth: 100,
     maxWidth: 300,
     sorter: 'default'
   },
   {
-    title: 'Номер дела',
-    key: 'caseId',
+    title: "№ исполнительного производства",
+    key: 'proceedingNumber',
     resizable: true,
     minWidth: 100,
     maxWidth: 300,
     sorter: 'default'
   },
   {
-    title: 'Истец',
-    key: 'applicant',
+    title: "Взыскатель",
+    key: 'recoverer',
+    resizable: true,
+    minWidth: 100,
+    maxWidth: 300,
+    // sorter: 'default'
+  },
+  {
+    title: "Должник",
+    key: 'deptor',
     resizable: true,
     minWidth: 100,
     maxWidth: 300,
     sorter: 'default'
   },
   {
-    title: 'Ответчик',
-    key: 'responder',
+    title: "Предмет исполнительного производства",
+    key: 'proceedingSubject',
     resizable: true,
     minWidth: 100,
     maxWidth: 300,
     sorter: 'default'
   },
   {
-    title: 'Предмет спора',
-    key: 'subject',
+    title: "Срок исполнения исполнительного производства",
+    key: 'executionPeriod',
     resizable: true,
     minWidth: 100,
     maxWidth: 300,
     sorter: 'default'
   },
-  {
-    title: 'Дата вынесенного судебного акта',
-    key: 'actDate',
-    resizable: true,
-    minWidth: 100,
-    maxWidth: 300,
-    sorter: 'default'
-  },
-  {
-    title: 'Дата заказа исполнительного листа',
-    key: 'execListDate',
-    resizable: true,
-    minWidth: 100,
-    maxWidth: 300,
-    sorter: 'default'
-  },
-  {
-    title: 'Дата получения исполнительного листа',
-    key: 'receivingListDate',
-    resizable: true,
-    minWidth: 100,
-    maxWidth: 300,
-    sorter: 'default'
-  },
-  {
-    title: 'Реквизиты исполнительного документа',
-    key: 'requissites',
-    resizable: true,
-    minWidth: 100,
-    maxWidth: 300,
-    sorter: 'default'
-  }
 ])
 function renderIcon (icon) {
   return () => h(NIcon, null, { default: () => h(icon) })

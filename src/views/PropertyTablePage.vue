@@ -1,11 +1,16 @@
 <template>
-  <n-button class="add-button" @click="addPropertyItem" style="margin-left: 20px;">
-    <template #icon><add_icon></add_icon></template>
-    Добавить запись</n-button>
   <div class="property-table-page__table">
-    
     <property-table :data="data" :columns="propertyColumns" :search-function="searchFunction">
-      Реестр исполнительных производств имущественного характера</property-table
+      <template #header>
+        Реестр исполнительных производств имущественного характера
+      </template>
+      <template #button>
+        <n-button class="add-button" @click="addPropertyItem">
+          <template #icon><add_icon></add_icon></template>
+          Добавить запись
+        </n-button>
+      </template>
+      </property-table
     >
   </div>
 </template>
@@ -27,147 +32,157 @@ function renderIcon (icon) {
 const add_icon = renderIcon(AddIcon);
 
 const propertyData = computed(() => useProceedingsStore().propertyItems)
-console.log(propertyData.value )
+console.log(propertyData.value)
 // const itemProp = ref(null);
 const addPropertyItem = () => {
-  useProceedingsStore().choosenItem = JSON.parse(JSON.stringify(item));
+  useProceedingsStore().choosenItem =     
+  {
+    item:
+    {
+        id: Math.ceil(Math.random() * 10000000),
+        writOfExecutionOrderDate: '',
+        writOfExecutionReceivingDate: '',
+        docOfExecutionRequisites: '',
+        transferDateOfExecutionWrit: '',
+        division: '',
+        executionPeriod: '',
+        recoverer: '',
+        deptor: '',
+        dateOfInitiation: '',
+        proceedingNumber: '',
+        proceedingSubject: '',
+        proceedingEndDate: '',
+        proceedingEndCauses: '',
+        bailifContacts: '',
+        note: '',
+        isProperty: true,
+    },
+    penalties:
+    {
+        id: Math.ceil(Math.random() * 10000000),
+        baseDept: '',
+        penalties: '',
+        judgmentCosts: '',
+        total: '',
+    },
+    courtCases: [] ,
+    administration:
+    {
+        id: Math.ceil(Math.random() * 10000000),
+        name: 'Ответственный орган администрации МО г. Краснодар 1',
+
+    },
+    status: 
+    {
+        id: Math.ceil(Math.random() * 10000000),
+        proceedingId: '',
+        statusId: '',
+        result: '',
+        cutOffDate: '',
+    },
+};
   useProceedingsStore().propertyItems.push(useProceedingsStore().choosenItem)
-  router.push('/item')
+  router.push('/property-item')
 }
 
 const searchFunction = useProceedingsStore().getPropertySearched;
-const data = propertyData.value.reduce((result, item) => {
+const data = propertyData.value.reduce((acc, item) => {
   return [
-    ...result,
+    ...acc,
     {
-      key: item.isp_proi.iduser,
-      id: h(MyCell, {
+      key: item.item.id,
+      more: h(MyCell, {
         onClick: () => {
+          console.log(item);
           useProceedingsStore().choosenItem = item
-          router.push('/item')
+          router.push('/property-item')
         },
         text: 'Подробнее'
       }),
-      col1: item.organ_admins.name_organ,
-      judgmentName: item.court_case.name_syd,
-      caseId: item.court_case.num_del,
-      applicant: item.court_case.plaintiff,
-      responder: item.court_case.defendant,
-      subject: item.court_case.pred_spor,
-      actDate: item.court_case.date_vin_syd_akt,
-      debt: item.property_pens.principaldebt,
-      penalties: item.property_pens.penalties,
-      costs: item.property_pens.сourtcosts,
-      total: parseFloat(item.property_pens.principaldebt) + parseFloat(item.property_pens.penalties) + parseFloat(item.property_pens.сourtcosts),
-      execDate: item.isp_proi.dateoforderofthewrit,
+      id: item.item.id,
+      administration: item.administration.name,
+      division: item.item.division,
+      proceedingNumber: item.item.proceedingNumber,
+      recoverer: item.item.recoverer,
+      deptor: item.item.deptor,
+      proceedingSubject: item.item.proceedingSubject,
+      executionPeriod: item.item.executionPeriod,
     }
   ]
-}, [])
+}, []);
+
 const propertyColumns = reactive([
   {
     title: '',
+    key: 'more',
+    resizable: true,
+    minWidth: 100,
+    maxWidth: 300,
+  },
+  {
+    title: 'id',
     key: 'id',
     resizable: true,
     minWidth: 100,
     maxWidth: 300,
-    sorter: 'default'
+    sorter: 'default',
   },
   {
-    title: 'Ответственный орган администрации',
-    key: 'col1',
+    title: "Ответственный орган администрации МО г. Краснодар",
+    key: 'administration',
     resizable: true,
     minWidth: 100,
     maxWidth: 300,
     sorter: 'default'
   },
   {
-    title: 'Наименование суда',
-    key: 'judgmentName',
+    title: "Наименование структурного подразделения УФССП",
+    key: 'division',
     resizable: true,
     minWidth: 100,
     maxWidth: 300,
     sorter: 'default'
   },
   {
-    title: 'Номер дела',
-    key: 'caseId',
+    title: "№ исполнительного производства",
+    key: 'proceedingNumber',
     resizable: true,
     minWidth: 100,
     maxWidth: 300,
     sorter: 'default'
   },
   {
-    title: 'Истец',
-    key: 'applicant',
+    title: "Взыскатель",
+    key: 'recoverer',
+    resizable: true,
+    minWidth: 100,
+    maxWidth: 300,
+    // sorter: 'default'
+  },
+  {
+    title: "Должник",
+    key: 'deptor',
     resizable: true,
     minWidth: 100,
     maxWidth: 300,
     sorter: 'default'
   },
   {
-    title: 'Ответчик',
-    key: 'responder',
+    title: "Предмет исполнительного производства",
+    key: 'proceedingSubject',
     resizable: true,
     minWidth: 100,
     maxWidth: 300,
     sorter: 'default'
   },
   {
-    title: 'Предмет спора',
-    key: 'subject',
+    title: "Срок исполнения исполнительного производства",
+    key: 'executionPeriod',
     resizable: true,
     minWidth: 100,
     maxWidth: 300,
     sorter: 'default'
   },
-  {
-    title: 'Дата вынесенного судебного акта',
-    key: 'actDate',
-    resizable: true,
-    minWidth: 100,
-    maxWidth: 300,
-    sorter: 'default'
-  },
-  {
-    title: 'Основной долг',
-    key: 'debt',
-    resizable: true,
-    minWidth: 100,
-    maxWidth: 300,
-    sorter: 'default'
-  },
-  {
-    title: 'Штрафы',
-    key: 'penalties',
-    resizable: true,
-    minWidth: 100,
-    maxWidth: 300,
-    sorter: 'default'
-  },
-  {
-    title: 'Судебные расходы',
-    key: 'costs',
-    resizable: true,
-    minWidth: 100,
-    maxWidth: 300,
-    sorter: 'default'
-  },
-  {
-    title: 'Всего',
-    key: 'total',
-    resizable: true,
-    minWidth: 100,
-    maxWidth: 300,
-    sorter: 'default'
-  },
-  {
-    title: 'Дата заказа',
-    key: 'execDate',
-    resizable: true,
-    minWidth: 100,
-    maxWidth: 300,
-    sorter: 'default'
-  }
 ])
 </script>
 

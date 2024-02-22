@@ -3,8 +3,10 @@ import AuthPage from '../views/AuthPage.vue'
 import PropertyTablePage from '../views/PropertyTablePage.vue'
 import NonPropertyTablePage from '../views/NonPropertyTablePage.vue'
 import PropertyItemPage from '../views/PropertyItemPage.vue'
+import NonPropertyItemPage from '../views/NonPropertyItemPage.vue'
 import HandleUserRolesPage from '../views/HandleUserRolesPage.vue'
 import HandleDepartmentRolesPage from '../views/HandleDepartmentRolesPage.vue'
+import LogsPage from '../views/LogsPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,9 +32,14 @@ const router = createRouter({
       component: NonPropertyTablePage
     },
     {
-      path: '/item',
-      name: 'item',
+      path: '/property-item',
+      name: 'property-item',
       component: PropertyItemPage
+    },
+    {
+      path: '/non-property-item',
+      name: 'non-property-item',
+      component: NonPropertyItemPage
     },
     {
       path: '/about',
@@ -51,7 +58,12 @@ const router = createRouter({
       path: '/department-roles',
       name: 'department-roles',
       component: HandleDepartmentRolesPage
-    }
+    },
+    {
+      path: '/logs',
+      name: 'logs',
+      component: LogsPage,
+    },
   ]
 })
 

@@ -1,8 +1,11 @@
 <template>
   <div class="property-table">
+    <n-h2>
+        <slot name="header"></slot>
+    </n-h2>
     <div class="property-table__header">
-      <NH3><slot></slot></NH3>
       <n-space :size="40">
+        <slot name="button"></slot>
         <n-h3>Отображение</n-h3>
         <n-select
         :value="choosenItemsPerPage"
@@ -31,7 +34,7 @@
 
 <script setup>
 import { computed, defineComponent, ref, watch } from 'vue'
-import { NDataTable, NSpace, NButton, NH3, NH4, NInput, NSelect, NCheckbox } from 'naive-ui'
+import { NDataTable, NSpace, NButton, NH2, NH3, NH4, NInput, NSelect, NCheckbox } from 'naive-ui'
 
 import { useProceedingsStore } from '../../stores/useProceedingsStore'
 
@@ -145,5 +148,13 @@ watch(current, () => tableData.value = current.value ? tableData.value.slice(3) 
 
 .property-table__search {
   width: 400px !important;
+}
+
+.n-data-table-sorter--desc {
+  color: red !important;;
+}
+
+.n-data-table-sorter--asc {
+  color: green !important;
 }
 </style>

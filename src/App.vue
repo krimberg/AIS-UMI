@@ -47,11 +47,12 @@ import ListIcon from './components/icons/ListIcon.vue';
 
 import { useRouter } from 'vue-router'
 import GroupIcon from './components/icons/GroupIcon.vue'
+import LogsIcon from './components/icons/LogsIcon.vue'
 
 onMounted(() => {
-  useProceedingsStore().fetchData();
-  useUserStore().fetchDepartments();
-  useUserStore().fetchUsers();
+  // useProceedingsStore().fetchData();
+  // useUserStore().fetchDepartments();
+  // useUserStore().fetchUsers();
 //   // useRouter().push('/auth')
 })
 
@@ -98,6 +99,19 @@ const menuOptions = [
         { default: () => 'Управление ролями пользователей' }
       ),
       icon: renderIcon(GroupIcon),
+  },
+  {
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: {
+            name: 'logs'
+          }
+        },
+        { default: () => 'Справочник' }
+      ),
+      icon: renderIcon(LogsIcon),
   },
   
 ]

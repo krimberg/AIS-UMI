@@ -6,79 +6,170 @@ export const useProceedingsStore = defineStore('Proceedings', {
   // arrow function recommended for full type inference
   state: () => ({
     propertyItems: [
-      
+      {
+        item:
+        {
+            id: '1543546551',
+            writOfExecutionOrderDate: '',
+            writOfExecutionReceivingDate: '',
+            docOfExecutionRequisites: '',
+            transferDateOfExecutionWrit: '',
+            division: 'Структурное подразделение 1',
+            executionPeriod: '11.11.2024',
+            recoverer: 'Иванов Иван Иванович',
+            deptor: 'Смирнов Игорь Петрович',
+            dateOfInitiation: '',
+            proceedingNumber: 'Исполнительное производство 1',
+            proceedingSubject: 'Предмет исполнительного производства 1',
+            proceedingEndDate: '',
+            proceedingEndCauses: '',
+            bailifContacts: '',
+            note: '',
+            isProperty: true,
+        },
+        penalties:
+        {
+            baseDept: '777',
+            penalties: '77',
+            judgmentCosts: '77',
+            total: '7777',
+        },
+        courtCases: [],
+        administration:
+        {
+            id: '',
+            name: 'Ответственный орган администрации МО г. Краснодар 1',
+    
+        },
+        status: 
+        {
+            id: '',
+            proceedingId: '',
+            statusId: '',
+            result: '',
+            cutOffDate: '',
+        },
+    },
+    {
+      item:
+      {
+          id: '1543546552',
+          writOfExecutionOrderDate: '',
+          writOfExecutionReceivingDate: '',
+          docOfExecutionRequisites: '',
+          transferDateOfExecutionWrit: '',
+          division: 'Структурное подразделение 2',
+          executionPeriod: '11.11.2024',
+          recoverer: 'Сидоров Олег Дмитриевич',
+          deptor: 'Семенов Семен Семенович',
+          dateOfInitiation: '',
+          proceedingNumber: 'Исполнительное производство 2',
+          proceedingSubject: 'Предмет исполнительного производства 2',
+          proceedingEndDate: '',
+          proceedingEndCauses: '',
+          bailifContacts: '',
+          note: '',
+          isProperty: true,
+      },
+      penalties:
+      {
+          baseDept: '',
+          penalties: '',
+          judgmentCosts: '',
+          total: '',
+      },
+      courtCases: [],
+      administration:
+      {
+          id: '',
+          name: 'Ответственный орган администрации МО г. Краснодар 2',
+  
+      },
+      status: 
+      {
+          id: '',
+          proceedingId: '',
+          statusId: '',
+          result: '',
+          cutOffDate: '',
+      },
+  }
     ],
     nonPropertyItems: [
       {
-        key: 'np5',
-        id: '35435465511',
-        col1: ' ООП по прикубанскому округу г Краснодара главного управления федеральной служюы судебных приставов...',
-        judgmentName: 'Арбитажный суд Краснодарского края',
-        caseId: '2231-45-33',
-        applicant: 'Фамилия Имя Отчество',
-        responder: 'Фамилия Имя Отчество',
-        subject: 'Постановление СПИ о постановлении ИП',
-        actDate: '2022-04-14',
-        execListDate: '2022-01-11',
-        receivingListDate: '2021-12-22',
-        requissites: '4115924112341'
-      },
+        item:
+        {
+            id: '1543546551',
+            writOfExecutionOrderDate: '',
+            writOfExecutionReceivingDate: '',
+            docOfExecutionRequisites: '',
+            transferDateOfExecutionWrit: '',
+            division: 'Структурное подразделение 1',
+            executionPeriod: '11.11.2024',
+            recoverer: 'Иванов Иван Иванович',
+            deptor: 'Смирнов Игорь Петрович',
+            dateOfInitiation: '',
+            proceedingNumber: 'Исполнительное производство 1',
+            proceedingSubject: 'Предмет исполнительного производства 1',
+            proceedingEndDate: '',
+            proceedingEndCauses: '',
+            bailifContacts: '',
+            note: '',
+            isProperty: false,
+        },
+        courtCases: [],
+        administration:
+        {
+            id: '',
+            name: 'Ответственный орган администрации МО г. Краснодар 1',
+    
+        },
+        status: 
+        {
+            id: '',
+            proceedingId: '',
+            statusId: '',
+            result: '',
+            cutOffDate: '',
+        },
+    },
+    {
+      item:
       {
-        key: 'np6',
-        id: '35435465542',
-        col1: 'ООП ',
-        judgmentName: 'Арбитажный суд Краснодарского края',
-        caseId: '4231-45-33',
-        applicant: 'Фамилия Имя Отчество',
-        responder: 'Фамилия Имя Отчество',
-        subject: 'Постановление СПИ о постановлении ИП',
-        actDate: '2022-04-14',
-        execListDate: '2022-01-11',
-        receivingListDate: '2021-12-22',
-        requissites: '4115924112341'
+          id: '1543546552',
+          writOfExecutionOrderDate: '',
+          writOfExecutionReceivingDate: '',
+          docOfExecutionRequisites: '',
+          transferDateOfExecutionWrit: '',
+          division: 'Структурное подразделение 2',
+          executionPeriod: '11.11.2024',
+          recoverer: 'Сидоров Олег Дмитриевич',
+          deptor: 'Семенов Семен Семенович',
+          dateOfInitiation: '',
+          proceedingNumber: 'Исполнительное производство 2',
+          proceedingSubject: 'Предмет исполнительного производства 2',
+          proceedingEndDate: '',
+          proceedingEndCauses: '',
+          bailifContacts: '',
+          note: '',
+          isProperty: false,
       },
+      courtCases: [],
+      administration:
       {
-        key: 'np7',
-        id: '35435465543',
-        col1: 'ООП по прикубанскому округу г Краснодара главного управления федеральной служюы судебных приставов...',
-        judgmentName: 'Арбитажный суд Краснодарского края',
-        caseId: '7231-45-33',
-        applicant: 'Фамилия Имя Отчество',
-        responder: 'Фамилия Имя Отчество',
-        subject: 'Постановление СПИ о постановлении ИП',
-        actDate: '2022-04-14',
-        execListDate: '2022-01-11',
-        receivingListDate: '2021-12-22',
-        requissites: '4115924112341'
+          id: '',
+          name: 'Ответственный орган администрации МО г. Краснодар 2',
+  
       },
+      status: 
       {
-        key: 'np8',
-        id: '35435465544',
-        col1: 'ООП по прикубанскому округу г Краснодара главного управления федеральной служюы судебных приставов...',
-        judgmentName: 'Арбитажный суд Краснодарского края',
-        caseId: '8231-45-33',
-        applicant: 'Фамилия Имя Отчество',
-        responder: 'Фамилия Имя Отчество',
-        subject: 'Постановление СПИ о постановлении ИП',
-        actDate: '2022-04-14',
-        execListDate: '2022-01-11',
-        receivingListDate: '2021-12-22',
-        requissites: '4115924112341'
+          id: '',
+          proceedingId: '',
+          statusId: '',
+          result: '',
+          cutOffDate: '',
       },
-      {
-        key: 'np9',
-        id: '35435465545',
-        col1: 'ООП по прикубанскому округу г Краснодара главного управления федеральной служюы судебных приставов...',
-        judgmentName: 'Арбитажный суд Краснодарского края',
-        caseId: '9231-45-33',
-        applicant: 'Фамилия Имя Отчество',
-        responder: 'Фамилия Имя Отчество',
-        subject: 'Постановление СПИ о постановлении ИП',
-        actDate: '2022-04-14',
-        execListDate: '2022-01-11',
-        receivingListDate: '2021-12-22',
-        requissites: '4115924112341'
-      }
+  }
     ],
     choosenItem: reactive(null)
   }),
