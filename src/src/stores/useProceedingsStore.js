@@ -34,12 +34,6 @@ export const useProceedingsStore = defineStore('Proceedings', {
             judgmentCosts: '77',
             total: '7777',
         },
-        penalties1:
-        {
-          action: 'Действие',
-          result: 'Результат',
-          date: 'Дата',
-       },
         courtCases: [],
         administration:
         {
@@ -75,7 +69,6 @@ export const useProceedingsStore = defineStore('Proceedings', {
           proceedingEndCauses: '',
           bailifContacts: '',
           note: '',
-          
           isProperty: true,
       },
       penalties:
@@ -85,12 +78,6 @@ export const useProceedingsStore = defineStore('Proceedings', {
           judgmentCosts: '',
           total: '',
       },
-      penalties1:
-        {
-          action: '',
-          result: '',
-          date: '',
-       },
       courtCases: [],
       administration:
       {

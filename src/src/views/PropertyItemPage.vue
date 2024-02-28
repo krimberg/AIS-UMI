@@ -34,9 +34,6 @@
 </div>
 </div>
 
-
-
-
 <div class="property-item-page__court-cases"
     v-for="(courtCase, id) in item.courtCases" :key="courtCase.id"
     >
@@ -61,34 +58,6 @@
     </n-space>
   </div>
 </div>
-
-
-<div class="property-item-page__court-cases"
-    v-for="(courtCase1, id) in item.courtCases1" :key="courtCase1.id"
-    >
-    <div class="property-item-page__court-card">
-      <n-button class="delete-btn"
-      @click="() => item.courtCases1.splice(id, 1)"
-      >
-        <template #icon><delete_icon /></template>
-        Удалить действие пристова
-      </n-button>
-      <n-space horizontal justify="space-between" align="center" class="property-item-page__space"
-      v-for="(value, key) in courtCase1" :key="key"
-      >
-      <n-h3 class="property-item-page__span">{{ judgmentFields1[key] }}</n-h3>
-      <n-input
-      class="property-item-page__input"
-      :value="courtCase1[key]"
-      :disabled="role === 'USER'"
-      @update:value="(newValue) => (courtCase1[key] = newValue)"
-      />
-      <!-- <p>{{ item[key] }}</p> -->
-    </n-space>
-  </div>
-</div>
-
-
 <NButton class="add-button">
     <template #icon><add_icon></add_icon></template>
     Сохранить</NButton>
@@ -126,38 +95,6 @@
     </n-modal>
 
 
-    <n-button class="add-button"
-  style="margin-left: 20px;"
-  @click="showModal1=true">
-        <template #icon><add_icon></add_icon></template>
-        Действия приставов
-    </n-button>
-  <n-modal v-model:show="showModal1">
-      <n-card
-        style="width: 600px"
-        title="Действия приставов"
-        :bordered="false"
-        size="huge"
-        role="dialog"
-        aria-modal="true"
-      >
-      <div class="JudgmentData1"
-      style="margin-bottom: 15px;"
-      v-for="(judgmentValue1, judgmentKey1) in judgmentFields1" :key="judgmentKey1"
-      >
-      <n-h3>{{ judgmentValue1 }}</n-h3>
-      <n-input
-      placeholder="Введите данные"
-      :value="tempCourtCase1[judgmentKey1]"
-      @update:value="(value) => (tempCourtCase1[judgmentKey1] = value)"
-      />
-      </div>
-        
-        <template #footer>
-          <n-button @click="addCourtCase1">Действия приставов</n-button>
-        </template>
-      </n-card>
-    </n-modal>
 
   </template>
   
@@ -171,15 +108,9 @@
 import DeleteIcon from '../components/icons/DeleteIcon.vue';
 
   const showModal = ref(false);
-
-  const showModal1 = ref(false);
   
   const addJudgment = () => {
     showModal.value = false;
-  }
-
-  const addJudgment1 = () => {
-    showModal1.value = false;
   }
   
   function renderIcon (icon) {
@@ -190,9 +121,7 @@ import DeleteIcon from '../components/icons/DeleteIcon.vue';
   
   const role = useUserStore().role
   const item = useProceedingsStore().choosenItem
-  
   console.log(item)
-  
   const mainFields = {
     item:
     {
@@ -229,9 +158,6 @@ if (item.item.isProperty) {
   }
 
 
-  
-
-
   const judgmentFields = {
       // id: "Идентификатор "
       judgmentName: 'Наименование суда',
@@ -242,16 +168,6 @@ if (item.item.isProperty) {
       actDate: 'Дата вынесения судебного акта',
   }
   
-
-const judgmentFields1 = {
-      // id: "Идентификатор "
-        action: 'Действие',
-        result: 'Результат',
-        date: 'Дата',
-  }
-
-
-
   const deps = [
   {
       label: 'ООП по прикубанскому округу г Краснодара главного управления федеральной служюы судебных приставов...',
@@ -311,28 +227,6 @@ const addCourtCase = () => {
   showModal.value = !showModal.value
   console.log(item);
 }  
-
-
-
-
-let tempCourtCase1 = reactive({
-      // id: Math.ceil(Math.random() * 10000000),
-        action: '',
-        result: '',
-        date: '',
-  })
-
-const addCourtCase1 = () => {
-    item.courtCases1.push(JSON.parse(JSON.stringify(tempCourtCase1)))
-    tempCourtCase1 = reactive({
-      // id: Math.ceil(Math.random() * 10000000),
-        action: '',
-        result: '',
-        date: '',
-  }) 
-  showModal1.value = !showModal1.value
-  console.log(item);
-}
   </script>
   
   <style scoped>
@@ -353,7 +247,7 @@ const addCourtCase1 = () => {
   .property-item-page__select {
   width: 400px !important;
   }
-  .property-item-page__court-card1 {
+  .property-item-page__court-card {
     background: white;
     padding: 5px;
     /* margin-top: 30px; */
